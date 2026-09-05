@@ -1,0 +1,42 @@
+﻿@model List<Doctor>
+
+
+<h1>Book Appointment</h1>
+<form method="get" asp-controller="Doctor" asp-action="Index">
+
+    <div class="mb-3">
+        <label>Search by Specialization</label>
+
+        <input type="text"
+               name="specialization"
+               class="form-control"
+               placeholder="Enter specialization..."
+               value="@Context.Request.Query["specialization"]" />
+
+        <button type="submit" class="btn btn-primary mt-2">
+            Search
+        </button>
+
+    </div>
+
+</form>
+
+<div class="row">
+@foreach(var item in Model)
+{
+    
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img" src="~/imges/doctor/imges/doctor@(item.Id).jpg"
+                style="width: 100%; height: auto;" alt="Doctor Image">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">Specialization:@item.Specialization.Name</p>
+                    <a href="/Appointment/Apoi/@item.Id" class="btn btn-primary">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+   
+    
+}
+</div>
